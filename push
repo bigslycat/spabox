@@ -11,12 +11,12 @@ docker build --no-cache \
   -t "$NAME:$MINOR" \
   -t "$NAME:$MAJOR" .
 
-docker tag "$NAME" "$NAME:latest"
-docker tag "$NAME" "$NAME:$PATCH"
-docker tag "$NAME" "$NAME:$MINOR"
-docker tag "$NAME" "$NAME:$MAJOR"
+docker tag "$NAME:latest" "bigslycat/$NAME:latest"
+docker tag "$NAME:$PATCH" "bigslycat/$NAME:$PATCH"
+docker tag "$NAME:$MINOR" "bigslycat/$NAME:$MINOR"
+docker tag "$NAME:$MAJOR" "bigslycat/$NAME:$MAJOR"
 
-docker push "$NAME:latest"
-docker push "$NAME:$PATCH"
-docker push "$NAME:$MINOR"
-docker push "$NAME:$MAJOR"
+docker push "bigslycat/$NAME:latest"
+docker push "bigslycat/$NAME:$PATCH"
+docker push "bigslycat/$NAME:$MINOR"
+docker push "bigslycat/$NAME:$MAJOR"
