@@ -1,0 +1,38 @@
+{
+  "name": "spabox",
+  "version": "1.0.0",
+  "description": "Simple proxy for SPA",
+  "repository": "git@github.com:bigslycat/spa-proxy.git",
+  "author": "Pavel Tereschenko <me@stupidcat.wtf> (https://github.com/bigslycat)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c && chmod +x bin/*",
+    "build:docker": "./push"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-rc.3",
+    "@babel/preset-env": "^7.0.0-rc.3",
+    "@babel/preset-flow": "^7.0.0-rc.3",
+    "core-js": "^2.5.7",
+    "invariant": "^2.2.4",
+    "js-yaml": "^3.12.0",
+    "rollup": "^0.65.0",
+    "rollup-plugin-babel": "^4.0.0-beta.8",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "flow-bin": "^0.79.1",
+    "flow-typed": "^2.5.1",
+    "jlens": "^1.0.4",
+    "prettier": "^1.14.2"
+  }
+}
