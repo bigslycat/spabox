@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+NAME=$(jl package.json name)
+MAJOR=$(./version.js major)
+MINOR=$(./version.js minor)
+PATCH=$(./version.js patch)
+
+docker build --no-cache \
+  -t "$NAME:latest" \
+  -t "$NAME:$PATCH" \
+  -t "$NAME:$MINOR" \
+  -t "$NAME:$MAJOR" .
+
+docker tag "$NAME" "$NAME:latest"
+docker tag "$NAME" "$NAME:$PATCH"
+docker tag "$NAME" "$NAME:$MINOR"
+docker tag "$NAME" "$NAME:$MAJOR"
+
+docker push "$NAME:latest"
+docker push "$NAME:$PATCH"
+docker push "$NAME:$MINOR"
+docker push "$NAME:$MAJOR"
