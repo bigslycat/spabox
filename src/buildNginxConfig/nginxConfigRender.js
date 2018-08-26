@@ -38,7 +38,7 @@ http {
 
         charset utf-8;
 
-        root   /app;
+        root   /app/static;
 
         location / {
             add_header Cache-Control "must-revalidate, no-cache, no-store";
