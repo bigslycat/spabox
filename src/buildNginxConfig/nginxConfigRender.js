@@ -32,6 +32,11 @@ http {
 
     #gzip  on;
 
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        '' close;
+    }
+
     server {
         listen       80;
         server_name  localhost;
@@ -47,11 +52,6 @@ http {
 
         location /assets {
             expires max;
-        }
-
-        map $http_upgrade $connection_upgrade {
-            default upgrade;
-            '' close;
         }
 
         ${renderProxies(proxies)}
