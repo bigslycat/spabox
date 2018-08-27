@@ -26,11 +26,10 @@ export default {
     banner,
   },
   plugins: [
-    babel(),
-    nodeResolve({
-      jsnext: true,
-      main: true,
+    babel({
+      exclude: 'node_modules/**',
     }),
+    nodeResolve(),
     commonjs({
       include: 'node_modules/**',
     }),
