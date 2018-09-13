@@ -15,6 +15,9 @@ jobs:
   include:
     - stage: Tests
       script:
+        - cd examples/react-project/back && yarn
+        - cd ../front && yarn
+        - cd ../../..
         - yarn lint
         - yarn flow
 
