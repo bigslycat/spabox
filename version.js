@@ -8,7 +8,7 @@ const regs = {
   patch: /^(\d+\.\d+\.\d+)/,
 };
 
-const types = ['major', 'minor', 'patch'];
+const types = Object.keys(regs);
 const type = process.argv[2] || types[2];
 
 if (!types.includes(type)) {
