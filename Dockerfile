@@ -1,22 +1,31 @@
-FROM node:10.9.0-alpine as builder
+FROM node:10.10.0-alpine as dependencies
 
 WORKDIR /app
 
-ADD package.json ./
-ADD yarn.lock ./
-ADD babel.config.js ./
-ADD rollup.config.js ./
-ADD src ./src
+COPY package.json .
+COPY yarn.lock .
 
-RUN yarn install --production && yarn build
+RUN yarn install --production
 
-FROM nginx:1.15.2-alpine
+FROM node:10.10.0-alpine as build
+
+WORKDIR /app
+
+COPY --from=dependencies /app .
+
+COPY babel.config.js .
+COPY rollup.config.js .
+COPY src src
+
+RUN yarn build
+
+FROM nginx:1.15.3-alpine
 
 RUN apk add --no-cache nodejs
 
 WORKDIR /app
 
-COPY --from=builder /app/bin/build-nginx-config ./
+COPY --from=build /app/bin/build-nginx-config ./
 
 CMD ./build-nginx-config && nginx -g 'daemon off;'
 
