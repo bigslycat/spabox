@@ -6,7 +6,7 @@ module.exports = {
     [
       '@babel/env',
       {
-        targets: { node: 'current' },
+        targets: { node: '8.9.3' },
         useBuiltIns: 'usage',
         modules: false,
       },

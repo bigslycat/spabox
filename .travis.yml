@@ -8,15 +8,19 @@ node_js:
 services:
   - docker
 
-before_script:
-  - yarn
-
 jobs:
   include:
     - stage: Tests
       script:
-        - cd examples/react-project/back && yarn
-        - cd ../front && yarn
-        - cd ../../..
+        - yarn
+        - yarn --cwd examples/react-project/back
+        - yarn --cwd examples/react-project/front
         - yarn lint
         - yarn flow
+    - stage: Build image
+      script:
+        - docker build .
+    - stage: Build examples
+      script:
+        - docker build examples/react-project/back
+        - docker build examples/react-project/front
