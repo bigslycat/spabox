@@ -4,38 +4,48 @@ plugins:
   - flowtype
 
 extends:
-  - airbnb-base
+  - airbnb
   - plugin:prettier/recommended
 
 env:
   node: true
-  browser: false
+  browser: true
 
 rules:
 
-  prettier/prettier: error
+  prettier/prettier:
+    - error
+    - printWidth: 80
+      tabWidth: 2
+      useTabs: false
+      semi: true
+      singleQuote: true
+      trailingComma: all
+      bracketSpacing: true
+      jsxBracketSameLine: true
+      arrowParens: avoid
+      rangeStart: 0
+      requirePragma: false
+      insertPragma: false
+      proseWrap: preserve
 
   eqeqeq: [error, smart]
   no-dupe-keys: error
   no-return-assign: off
   consistent-return: off
+  no-console: off
 
   import/prefer-default-export: off
   import/no-extraneous-dependencies: off
 
+  react/jsx-filename-extension: [error, { extensions: [.js] }]
+  react/jsx-one-expression-per-line: off
+
   flowtype/define-flow-type: error
   flowtype/no-dupe-keys: error
-  flowtype/no-flow-fix-me-comments: off
   flowtype/no-mutable-array: error
   flowtype/no-primitive-constructor-types: error
   flowtype/no-types-missing-file-annotation: error
-  flowtype/no-unused-expressions: off
-  flowtype/no-weak-types: off
-  flowtype/require-exact-type: off
-  flowtype/require-parameter-type: [off, { excludeParameterMatch: '^_[0-9]*$' }]
-  flowtype/require-return-type: off
   flowtype/require-valid-file-annotation: [error, never, { annotationStyle: block }]
-  flowtype/require-variable-type: off
-  flowtype/sort-keys: off
   flowtype/type-id-match: [error, '^[A-Z][a-z0-9]*']
   flowtype/use-flow-type: error
