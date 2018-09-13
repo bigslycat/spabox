@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  front:
+    build: ./front
+    container_name: spabox-example-front
+    links:
+      - back
+    ports:
+      - 80:80
+    environment:
+      PROXY_WS_PATH: /api/ws
+      PROXY_WS_TARGET: http://back:3001/ws
+      PROXY_IO_PATH: /api/io
+      PROXY_IO_TARGET: http://back:3002/io
+  back:
+    build: ./back
+    container_name: spabox-example-back
+

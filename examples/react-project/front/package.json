@@ -1,0 +1,35 @@
+{
+  "name": "spabox-example-front",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "most": "^1.7.3",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-scripts": "1.1.5",
+    "recompose": "^0.30.0",
+    "socket.io-client": "^2.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/api/ws": {
+      "target": "http://localhost:3001",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "ws": true
+    },
+    "/api/io": {
+      "target": "http://localhost:3002",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "ws": true
+    }
+  }
+}
