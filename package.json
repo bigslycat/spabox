@@ -1,6 +1,6 @@
 {
   "name": "spabox",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple proxy for SPA",
   "repository": "bigslycat/spabox",
   "author": "Pavel Tereschenko <me@stupidcat.wtf> (https://github.com/bigslycat)",
