@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "most": "^1.7.3",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
     "react-scripts": "1.1.5",
     "recompose": "^0.30.0",
     "socket.io-client": "^2.1.1"
