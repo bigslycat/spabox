@@ -8,6 +8,7 @@ services:
     ports:
       - 80:80
     environment:
+      ASSETS: /static
       PROXY_WS_PATH: /api/ws
       PROXY_WS_TARGET: http://back:3001/ws
       PROXY_IO_PATH: /api/io

@@ -10,7 +10,10 @@ const beautify = new Beautify({
   spaces: 2,
 });
 
-export const nginxConfigRender = (config: spaboxConfig.Config) =>
+export const nginxConfigRender = ({
+  assets = '',
+  proxies = [],
+}: spaboxConfig.Config) =>
   beautify.parse(`
     user  nginx;
     worker_processes  1;
@@ -55,7 +58,7 @@ export const nginxConfigRender = (config: spaboxConfig.Config) =>
         root /var/www;
 
         ${
-          (config.proxies || []).find(proxy => proxy.path === '/')
+          proxies.find(proxy => proxy.path === '/')
             ? ''
             : `
               location / {
@@ -63,13 +66,15 @@ export const nginxConfigRender = (config: spaboxConfig.Config) =>
                 try_files $uri /index.html;
               }
 
-              location ${config.assets || '/static'} {
-                expires max;
-              }
+              ${assets &&
+                `location ${assets} {
+                  expires max;
+                }
+              `}
             `
         }
 
-        ${renderProxies(config.proxies)}
+        ${renderProxies(proxies)}
 
         # redirect server error pages to the static page /50x.html
         #
