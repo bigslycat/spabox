@@ -1,7 +1,7 @@
 {
   "name": "spabox",
   "version": "2.0.4",
-  "description": "Simple proxy for SPA",
+  "description": "Docker image as DevOps tool for delivery single-page applications",
   "repository": "bigslycat/spabox",
   "author": "Pavel Tereschenko <me@stupidcat.wtf> (https://github.com/bigslycat)",
   "license": "MIT",
