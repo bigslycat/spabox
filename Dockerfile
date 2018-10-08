@@ -1,6 +1,6 @@
 FROM node:10.10.0-alpine as dependencies
 
-WORKDIR /app
+WORKDIR /spabox
 
 COPY package.json .
 COPY yarn.lock .
@@ -9,9 +9,9 @@ RUN yarn --prod
 
 FROM node:10.10.0-alpine as build
 
-WORKDIR /app
+WORKDIR /spabox
 
-COPY --from=dependencies /app .
+COPY --from=dependencies /spabox .
 
 COPY babel.config.js .
 COPY rollup.config.js .
@@ -23,9 +23,9 @@ FROM nginx:1.15.3-alpine
 
 RUN apk add --no-cache nodejs
 
-WORKDIR /app
+WORKDIR /spabox
 
-COPY --from=build /app/bin/build-nginx-config ./
+COPY --from=build /spabox/bin/build-nginx-config ./
 
 CMD ./build-nginx-config && nginx -g 'daemon off;'
 
