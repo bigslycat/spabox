@@ -1,6 +1,6 @@
 # spabox [![Build Status][status-img]][status-url]
 
-A usable box for single page applications for delivery to production.
+Docker image as DevOps tool for delivery single-page applications
 
 ## Usage
 
@@ -32,6 +32,8 @@ proxies:
     headers:
       Access-Control-Allow-Origin: '*'
 ```
+
+Run Docker container:
 
 ```sh
 docker run -v `pwd`/config.yml:/spabox/config.yml noveo/spabox
