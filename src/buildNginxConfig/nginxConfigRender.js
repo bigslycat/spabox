@@ -62,7 +62,8 @@ export const nginxConfigRender = ({
             ? ''
             : `
               location / {
-                add_header Cache-Control "must-revalidate, no-cache, no-store";
+                ${assets &&
+                  'add_header Cache-Control "must-revalidate, no-cache, no-store";'}
                 try_files $uri /index.html;
               }
 
