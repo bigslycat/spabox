@@ -44,6 +44,6 @@
     "flow-typed": "^2.5.1",
     "husky": "^0.14.3",
     "jlens": "^1.0.4",
-    "prettier": "^1.14.2"
+    "prettier": "^1.15.3"
   }
 }
