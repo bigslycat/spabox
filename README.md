@@ -1,5 +1,7 @@
 # spabox [![Build Status][status-img]][status-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bigslycat/spabox.svg)](https://greenkeeper.io/)
+
 Docker image as DevOps tool for delivery single-page applications
 
 ## Usage
