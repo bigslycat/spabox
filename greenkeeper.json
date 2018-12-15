@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "examples/react-project/back/package.json",
+        "examples/react-project/front/package.json",
+        "package.json"
+      ]
+    }
+  }
+}
