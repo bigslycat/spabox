@@ -1,4 +1,4 @@
-FROM node:10.10.0-alpine as dependencies
+FROM node:10.15.3-alpine as dependencies
 
 WORKDIR /spabox
 
@@ -7,7 +7,7 @@ COPY yarn.lock .
 
 RUN yarn --prod
 
-FROM node:10.10.0-alpine as build
+FROM node:10.15.3-alpine as build
 
 WORKDIR /spabox
 
@@ -19,7 +19,7 @@ COPY src src
 
 RUN yarn build
 
-FROM nginx:1.15.3-alpine
+FROM nginx:1.15.9-alpine
 
 RUN apk add --no-cache nodejs
 

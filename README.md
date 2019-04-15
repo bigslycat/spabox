@@ -1,4 +1,4 @@
-# spabox [![Build Status][status-img]][status-url]
+# spabox [![Build Status][status-img]][status-url] [![Greenkeeper badge][status-img]][greekeeper-url]
 
 Docker image as DevOps tool for delivery single-page applications
 
@@ -84,3 +84,5 @@ COPY --from=build /app/build /var/www
 [CRA]: https://github.com/facebook/create-react-app
 [status-url]: https://travis-ci.org/bigslycat/spabox
 [status-img]: https://travis-ci.org/bigslycat/spabox.svg?branch=master
+[greekeeper-img]: https://badges.greenkeeper.io/bigslycat/spabox.svg
+[greekeeper-url]: https://badges.greenkeeper.io/bigslycat/spabox.svg

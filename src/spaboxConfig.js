@@ -9,14 +9,14 @@ import {
 } from 'typed-contracts';
 
 export type Proxy = {
-  path: string,
-  target: string,
-  headers?: { [header: string]: string },
+  +path: string,
+  +target: string,
+  +headers?: { +[header: string]: string },
 };
 
 export type Config = {
-  assets?: string,
-  proxies?: $ReadOnlyArray<Proxy>,
+  +assets?: string,
+  +proxies?: $ReadOnlyArray<Proxy>,
 };
 
 const headers = objectOf(string);
