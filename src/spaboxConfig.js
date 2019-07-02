@@ -6,7 +6,7 @@ import {
   object,
   array,
   ValidationError,
-} from 'typed-contracts';
+} from 'typed-contracts/src';
 
 export type Proxy = {
   +path: string,
