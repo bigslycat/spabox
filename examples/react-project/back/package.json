@@ -7,8 +7,8 @@
     "start": "node -r esm src/server"
   },
   "dependencies": {
-    "esm": "^3.0.82",
-    "socket.io": "^2.1.1",
-    "ws": "^6.0.0"
+    "esm": "^3.2.25",
+    "socket.io": "^2.2.0",
+    "ws": "^7.0.1"
   }
 }
