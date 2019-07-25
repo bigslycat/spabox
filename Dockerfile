@@ -1,4 +1,4 @@
-FROM rust:1.36.0-slim-buster
+FROM rust:1.36.0-slim-buster as build
 
 WORKDIR /spabox
 
