@@ -1,4 +1,4 @@
-FROM node:10.10.0-alpine as dependencies
+FROM node:12.6.0-alpine as dependencies
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY yarn.lock .
 
 RUN yarn install --production
 
-FROM node:10.10.0-alpine as build
+FROM node:12.6.0-alpine as build
 
 WORKDIR /app
 
