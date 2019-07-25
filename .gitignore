@@ -1,7 +1,6 @@
+/target
+**/*.rs.bk
+
 node_modules
-/bin
-/build
 *.log
-*.log.*
-*.log-*
-*.log_*
+*.log[-_.]*

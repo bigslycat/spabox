@@ -1,29 +1,13 @@
-FROM node:12.4.0-alpine as dependencies
+FROM rust:1.36.0-slim-buster
 
 WORKDIR /spabox
 
-COPY package.json .
-COPY yarn.lock .
+COPY . .
 
-RUN yarn --prod
+RUN cargo build --release
 
-FROM node:12.4.0-alpine as build
+FROM nginx:1.17.2-alpine
 
-WORKDIR /spabox
+COPY --from=build /spabox/target/release/spabox /usr/local/bin/build-nginx-config
 
-COPY --from=dependencies /spabox .
-
-COPY babel.config.js .
-COPY rollup.config.js .
-COPY src src
-
-RUN yarn build
-
-FROM nginx:1.17.1-alpine
-
-WORKDIR /spabox
-
-COPY --from=build /spabox/bin/build-nginx-config ./
-
-CMD ./build-nginx-config && nginx -g 'daemon off;'
-
+CMD build-nginx-config && nginx -g 'daemon off;'

@@ -15,8 +15,7 @@ jobs:
         - yarn
         - yarn --cwd examples/react-project/back
         - yarn --cwd examples/react-project/front
-        - yarn lint
-        - yarn flow
+        - npx eslint .
     - stage: Build image
       script:
         - docker build .

@@ -1,0 +1,18 @@
+[package]
+name = 'spabox'
+version = '3.0.0'
+description = 'Tiny and simple DevOps tool for SPA delivery'
+authors = ['Pavel Tereschenko <me@stupidcat.wtf>']
+publish = false
+edition = '2018'
+
+repository = 'https://github.com/bigslycat/spabox'
+homepage = 'https://github.com/bigslycat/spabox'
+documentation = 'https://github.com/bigslycat/spabox'
+
+license='MIT'
+
+[dependencies]
+heck = '0.3.1'
+lazy_static = '1.3.0'
+regex = '1.2.0'
