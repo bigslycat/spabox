@@ -1,48 +1,50 @@
-# spabox [![Build Status][status-img]][status-url] [![Greenkeeper badge][status-img]][greekeeper-url]
+# spabox ![Docker Cloud Build Status][build-status]
 
-Docker image as DevOps tool for delivery single-page applications
+Tiny and simple DevOps tool for SPA delivery
+
+This docker image allows you to host a static SPA build
+and mount any API on the same host. Based on nginx.
 
 ## Usage
 
-### Just run with env variables
+### Docker CLI
 
 ```sh
 docker run
-  -v `pwd`/build:/var/www \
+  -v `pwd`/build:/var/www:ro \
   -e ASSETS=/static \
+  -e HEADER_ContentSecurityPolicy="default-src 'self'; img-src https://*; child-src 'none';"
   -e PROXY_FOO_PATH=/api/foo/ \
   -e PROXY_FOO_TARGET=https://foo.exapmle.com/api/ \
   -e PROXY_BAR_PATH=/api/bar/ \
   -e PROXY_BAR_TARGET=https://bar.exapmle.com/api/ \
   -e PROXY_BAR_AccessControlAllowOrigin='*' \
-  noveo/spabox
+  bigslycat/spabox
 ```
 
-### Just run with config
-
-Create config.yml file (also you can use JSON format):
+### Docker Compose
 
 ```yaml
-assets: /static
-proxies:
-  - path: /api/foo/
-    target: https://foo.exapmle.com/api/
-  - path: /api/bar/
-    target: https://bar.exapmle.com/api/
-    headers:
-      Access-Control-Allow-Origin: '*'
+version: '3.7'
+services:
+  app:
+    image: bigslycat/spabox
+    volumes:
+      - ./build:/var/www:ro
+    environment:
+      ASSETS: /static
+      HEADER_ContentSecurityPolicy: default-src 'self'; img-src https://*; child-src 'none';
+      PROXY_FOO_PATH: /api/foo/
+      PROXY_FOO_TARGET: https://foo.exapmle.com/api/
+      PROXY_BAR_PATH: /api/bar/
+      PROXY_BAR_TARGET: https://bar.exapmle.com/api/
+      PROXY_BAR_AccessControlAllowOrigin: *
 ```
 
-Run Docker container:
-
-```sh
-docker run -v `pwd`/config.yml:/spabox/config.yml noveo/spabox
-```
-
-### Extending of image (example for [CRA][] project)
+### Extending of image
 
 ```Dockerfile
-FROM node:10.10.0-alpine as build
+FROM node:12.6.0-alpine as build
 
 WORKDIR /app
 
@@ -54,33 +56,33 @@ COPY src src
 RUN  yarn install --production \
   && yarn build
 
-FROM noveo/spabox
+FROM bigslycat/spabox
+
+ENV ASSETS=/static
 
 COPY --from=build /app/build /var/www
 ```
 
-## Image API
-
-### Files
-
-- `/spabox/config.yml` (or `/spabox/config.json`)
-  - `assets` property, `optional String` — expression of nginx location directive.
-    All matching paths will be cache forever. **Warning**: if `assets` is defined, all
-    mismatching path will be never cache.
-  - `proxies` property, `optional Array of Object` — array of proxy configs.
-  - `proxies[].path` property, `required String` — expression of nginx location directive.
-    Request to all matching paths will be send to `proxies[].target`.
-  - `proxies[].target` property, `required String` — nginx `proxy_pass` directive value.
-  - `proxies[].headers` property, `optional Object of String` — headers.
-
 ### Environment variables
 
-- `ASSETS` — equals `assets` property of config file. Case insensitive.
-- `PROXY_[a-z0-9]+_PATH` — equals `proxies[].path` property of config file. Case insensitive.
-- `PROXY_[a-z0-9]+_TARGET` — equals `proxies[].target` property of config file. Case insensitive.
-- `PROXY_[a-z0-9]+_HeaderInCamelCase` — equals `proxies[].headers['Header-In-Camel-Case']`
-  property of config file. Part of variable name before header name is case insensitive.
+- `ASSETS` — If this parameter is defined, the matching paths are cached forever,
+  and for the root location (`location / { ... }` in nginx config), caching is completely disabled.
+  This is useful when you build JS and assets with hash sum of file in filenames.
+  If this parameter is not defined, root location will have default cache settings.
 
+- `HEADER_CamelCaseHeaderName` — header for root location.
+  Second part of variable name must be in camelCase/PascalCase.
+
+- `PROXY_[a-z0-9]+_PATH` — Local path for proxying to target URL.
+  Corresponds to path of `location` nginx directive.
+
+- `PROXY_[a-z0-9]+_TARGET` — URL for proxying from local path.
+  Corresponds to `proxy_pass` nginx directive.
+
+- `PROXY_[a-z0-9]+_CamelCaseHeaderName` — header for proxy.
+  Third part of variable name must be in camelCase/PascalCase.
+
+[build-status]: https://img.shields.io/docker/cloud/build/bigslycat/spabox.svg?style=flat
 [CRA]: https://github.com/facebook/create-react-app
 [status-url]: https://travis-ci.org/bigslycat/spabox
 [status-img]: https://travis-ci.org/bigslycat/spabox.svg?branch=master
