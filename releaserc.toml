@@ -1,0 +1,16 @@
+[plugins]
+git = 'builtin'
+clog = 'builtin'
+github = 'builtin'
+
+[cfg.git]
+user_name = 'Pavel Tereschenko'
+user_email = 'me@stupidcat.wtf'
+force_https = true
+
+[cfg.github]
+user = 'bigslycat'
+repository = 'spabox'
+assets = [
+  'target/release/spabox'
+]
