@@ -48,7 +48,7 @@ dependencies = [
 
 [[package]]
 name = "spabox"
-version = "3.0.1"
+version = "3.0.2"
 dependencies = [
  "heck 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 1.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
