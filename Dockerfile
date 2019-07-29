@@ -9,8 +9,6 @@ RUN rustup target add x86_64-unknown-linux-musl \
 
 FROM nginx:1.17.2-alpine
 
-RUN apk add --no-cache libgcc
-
 COPY --from=build /spabox/target/x86_64-unknown-linux-musl/release/spabox /usr/local/bin/build-nginx-config
 
 CMD build-nginx-config && nginx -g 'daemon off;'
