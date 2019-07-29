@@ -1,6 +1,6 @@
 [package]
 name = 'spabox'
-version = '3.0.2'
+version = '3.0.3'
 description = 'Tiny and simple DevOps tool for SPA delivery'
 authors = ['Pavel Tereschenko <me@stupidcat.wtf>']
 publish = false
