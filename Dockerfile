@@ -1,12 +1,15 @@
-FROM rust:1.36.0-slim-buster as build
+FROM alpine:3.10.1 as build
 
 WORKDIR /spabox
 
 COPY . .
 
-RUN cargo build --release
+RUN apk add --no-cache rust cargo \
+  && cargo build --release
 
 FROM nginx:1.17.2-alpine
+
+RUN apk add --no-cache libgcc
 
 COPY --from=build /spabox/target/release/spabox /usr/local/bin/build-nginx-config
 
