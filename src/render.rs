@@ -2,7 +2,7 @@ use crate::config::Config;
 use crate::proxy::Proxy;
 
 fn add_header(name: &str, value: &str) -> String {
-    format!("add_header {}, \"{}\";", name, value)
+    format!("add_header {} \"{}\" always;", name, value)
 }
 
 fn render_root(config: &Config) -> String {
