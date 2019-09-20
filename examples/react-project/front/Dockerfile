@@ -18,6 +18,6 @@ COPY src src
 
 RUN yarn build
 
-FROM noveo/spabox
+FROM bigslycat/spabox
 
 COPY --from=build /app/build /var/www
